@@ -1,0 +1,32 @@
+{
+  "home": {
+    "title": "stories",
+    "hashtag": "by #{hashtag}"
+  },
+  "about": {
+    "title": "about",
+    "about": "This is a simple and private notebook. In the browser.\r\nThis site does not transmit data to the Internet, does not track users.\r\nIf you have questions, feel free to write to info@jiff.be.",
+    "version": "Application ver. {version}"
+  },
+  "manage": {
+    "title": "manage",
+    "content": [
+      "Here you can manage your entries. It's like that.\r\nWe do not force you to save notes here for any reason.\r\n",
+      "You can {0} them or {1} everything to one.{2}And if you suddenly want to restore exported entries, {3} them."
+    ],
+    "export": "export",
+    "import": "import",
+    "clean": "clean"
+  },
+  "editor": {
+    "placeholder":"Start type your story here...",
+    "or": "or",
+    "save": "save"
+  },
+  "story": {
+    "save": "save",
+    "edit": "edit",
+    "cancel": "cancel",
+    "remove": "remove"
+  }
+}
