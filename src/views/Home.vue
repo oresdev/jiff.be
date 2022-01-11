@@ -1,21 +1,27 @@
 <template>
-  <section class="app-page --home">
-    <section class="app-hashtag" v-if="hashtag" v-text="$t('home.hashtag', { hashtag })"></section>
+  <div class="container-fluid">
     <new-story @created="addStory" />
-    <stories-list :stories="getStories" @remove="removeStory" />
-  </section>
+
+    <stories-hashtags :items="getUsedHashtags" />
+
+    <stories-list :stories="getStories">
+      <template slot-scope="{_story, _key}">
+        <story-item :story="_story" :key="_key" @edit="edit" @remove="remove" />
+      </template>
+    </stories-list>
+  </div>
 </template>
 
 <script>
 import NewStory from '@/components/NewStory'
-import StoriesList from '@/components/StoriesList'
+import { StoryItem, StoriesList, StoriesHashtags } from '@/components/stories'
 import { mapActions } from 'vuex'
 
 export default {
   name: 'home',
   components: {
     NewStory,
-    StoriesList
+    StoryItem, StoriesList, StoriesHashtags
   },
   title() {
     return this.$t('home.title')
@@ -23,26 +29,32 @@ export default {
   data() {
     return {
       error: false,
+
+      group: 'date',
       sort: (a, b) => b.created_at - a.created_at,
       hashtag: null
     }
   },
   computed: {
     getStories() {
-      try {
-        this.error = false
-        return this.$store.getters.getStories({
-          sort: this.sort,
-          hashtag: this.hashtag
-        })
-      } catch(e) {
-        this.error = true
-        return []
-      }
+      return this.$store.getters.getStories({
+        group:   this.group,
+        sort:    this.sort,
+        hashtag: this.hashtag
+      })
+    },
+    getUsedHashtags() {
+      return this.$store.getters.getUsedHashtags
     }
   },
   methods: {
-    ...mapActions([ 'addStory', 'removeStory'])
+    ...mapActions([ 'addStory', 'removeStory']),
+    edit() {
+      alert('Soon')
+    },
+    remove(uuid) {
+      this.removeStory(uuid)
+    }
   },
   watch: {
     $route(to) {

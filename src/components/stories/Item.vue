@@ -13,7 +13,7 @@
       </div>
     </template>
     <template v-else>
-      <div class="story__content" contenteditable="false" v-html="$options.filters.contentFormat(story.content)"></div>
+      <div class="story__content" contenteditable="false" v-html="$formatter.contentFormat(story.content)"></div>
       <div class="meta">
         <span class="meta__item">{{ story.created_at | timeFormat }}</span>
         <span class="meta__item --divider">&middot;</span>
@@ -24,8 +24,11 @@
 </template>
 
 <script>
+import NewStory from '@/components/NewStory'
+
 export default {
-  name: 'Story',
+  name: 'story-item',
+  components: { NewStory },
   props: [ 'story' ],
   data() {
     return {
@@ -53,7 +56,6 @@ export default {
 <style scoped lang="scss">
 
 .story {
-  text-align: center;
   padding: 3rem 0;
 
   .story__content {
@@ -64,7 +66,7 @@ export default {
   }
 
   .meta {
-      opacity: .75;
+      opacity: .65;
       transition: opacity .1s ease-out;
   }
 

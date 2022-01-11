@@ -1,17 +1,19 @@
 <template>
   <div id="app">
-    <app-header />
-    <router-view />
+    <site-header />
+    <site-page>
+      <router-view />
+    </site-page>
   </div>
 </template>
 
 <script>
-import AppHeader from '@/components/Header'
+import { SiteHeader, SitePage } from '@/components/_site'
 
 export default {
   name: 'app',
   components: {
-    AppHeader
+    SiteHeader, SitePage
   }
 }
 </script>

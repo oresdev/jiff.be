@@ -1,15 +1,17 @@
 <template>
-  <section class="app-page --about">
-    <div class="page__info">
-      <p v-html="$options.filters.contentFormat($t('about.about'))"></p>
-      <p v-text="version"></p>
-    </div>
-  </section>
+  <div class="container-fluid">
+    <content-title>{{ $t('about.title') }}</content-title>
+
+    <p v-html="$formatter.contentFormat($t('about.about'))"></p>
+    <p v-text="version"></p>
+  </div>
 </template>
 
 <script>
+import { ContentTitle } from '@vue-norma/ui'
 export default {
   name: 'about',
+  components: { ContentTitle },
   title() {
     return this.$t('about.title')
   },

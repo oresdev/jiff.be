@@ -26,10 +26,14 @@
 </template>
 
 <script>
-import { uuid, cancelEvent } from '@/services/utils'
-
 export default {
   name: 'NewStory',
+  props: {
+    content: {
+      type: String,
+      default: ''
+    }
+  },
   data() {
     return {
       isEdit: false,
@@ -81,7 +85,7 @@ export default {
               case 105:
               case 85: //ctrl+U or ctrl+u
               case 117:
-                return cancelEvent(e)
+                return this.$utils.cancelEvent(e)
                 break;
           }
       }
@@ -89,13 +93,13 @@ export default {
       // ctrl + enter - and we create comment
       if ((e.ctrlKey || e.metaKey) && e.keyCode == 13) {
         this.save(e)
-        return cancelEvent(e)
+        return this.$utils.cancelEvent(e)
       }
 
       // not div, but two br
       if (e.keyCode == 13) {
         document.execCommand('insertHTML', false, '<br><br>')
-        return cancelEvent(e)
+        return this.$utils.cancelEvent(e)
       }
     },
     onPaste(e) {
@@ -104,19 +108,20 @@ export default {
 
       if (itemsText.length) {
         document.execCommand('insertText', false, itemsText)
-        return cancelEvent(e)
+        return this.$utils.cancelEvent(e)
       }
 
-      return cancelEvent(e)
+      return this.$utils.cancelEvent(e)
     },
     save(e) {
       e.preventDefault()
       if (!this.valid)
         return false
 
-      this.story.uuid = uuid()
+      this.story.uuid = this.$utils.uuid()
       this.story.created_at = Math.floor(+new Date() / 1000)
       this.story.edited_at = Math.floor(+new Date() / 1000)
+      this.story.hashtags = this.$formatter.extractHashtags(this.story.content) || []
 
       let copy = Object.assign({}, this.story)
       this.clean()
@@ -135,7 +140,6 @@ export default {
 <style scoped lang="scss">
 
 .editor {
-	text-align: center;
   padding: 3rem 0;
 
   .meta {

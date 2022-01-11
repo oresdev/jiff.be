@@ -16,14 +16,14 @@ const timeFormat = (timestamp, prefomattedDate = false, hideYear = false) => {
   }
 
   if (prefomattedDate) {
-    return `${prefomattedDate} @ ${hours}:${minutes}`
+    return `${prefomattedDate} at ${hours}:${minutes}`
   }
 
   if (hideYear) {
-    return `${day} ${month} @ ${hours}:${minutes}`
+    return `${day} ${month} at ${hours}:${minutes}`
   }
 
-  return `${day} ${month} ${year} @ ${hours}:${minutes}`
+  return `${day} ${month} ${year} at ${hours}:${minutes}`
 }
 
 const timeAgo = (timestamp) => {
@@ -96,5 +96,6 @@ const split = (value, separator, index) => {
 	}
 	return value.split(separator)[index]
 }
+
 
 export default { timeFormat, contentFormat, timeAgo, join, split }

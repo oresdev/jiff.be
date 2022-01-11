@@ -1,24 +1,37 @@
 import Vue from 'vue'
-import App from './App.vue'
+
 import './registerServiceWorker'
-import router from '@/services/router'
-import store from '@/services/store'
-import i18n from '@/services/i18n'
-import mixins from '@/services/mixins'
-import filters from '@/services/filters'
+
+import App from '@/App'
+
+// app components
+import router from '@/app/router'
+import store from '@/app/store'
+import i18n from '@/app/i18n'
+import mixins from '@/app/mixins'
+import filters from '@/app/filters'
+import directives from '@/app/directives'
+import { Utils, Formatter } from '@/app/services'
+
+// some styles
 import "@/assets/scss/main.scss"
 
-Vue.config.productionTip = false
-
+// load app directives & mixins & filters
 Object.keys(mixins).forEach(key =>
   Vue.mixin(mixins[key])
 )
-
-Object.keys(filters).forEach((key) =>
-	Vue.filter(key, filters[key])
+Object.keys(filters).forEach(key =>
+  Vue.filter(key, filters[key])
+)
+Object.keys(directives).forEach(key =>
+  Vue.use(directives[key])
 )
 
-new Vue({
+Vue.use(Utils)
+Vue.use(Formatter)
+
+// create the app instance.
+const app = new Vue({
   router,
   store,
   i18n,
@@ -26,4 +39,7 @@ new Vue({
 	beforeCreate() {
     this.$store.commit('initialiseStore');
   }
-}).$mount('#app')
+})
+
+// Mount them
+app.$mount('#app')

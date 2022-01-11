@@ -1,0 +1,84 @@
+// Main palette
+$x-color-palette: (
+  // Инь-янь
+  'white':   #ffffff,
+  'black':   #21273c,
+
+  // Чисто удобно
+  'action':  #2d7cd9,
+  'second':  #c63077,
+  'success': #35966d,
+  'error':   #ff3347,
+  'warning': #ffa000,
+
+  // Чисто палитра
+  'blue':   #2d7cd9,
+  'gray':   #a3adb8,
+  'green':  #35966d,
+  'orange': #ffa000,
+  'purple': #735ce6,
+  'pink':   #c63077,
+  'red':    #ff3347,
+  'violet': #792ec0
+);
+
+// Fonts
+$x-font-family: "Jost", sans-serif;
+$x-font-sizes: (
+  'base':         1.6rem,
+  'form-title':   2.3rem,
+  'module':       2.3rem,
+  'big':         1.83rem,
+  'title':          3rem,
+  'small':      1.420rem
+);
+$x-font-weights: (
+  'light':      300,
+  'normal':     400,
+  'medium':     500,
+  'bold':       600,
+  'extra-bold': 900
+);
+
+// Border radius
+$x-border-radius: (
+  'small':    5px,
+  'base':    10px,
+  'rounded': 20px
+);
+
+// Shadows
+$x-box-shadows: (
+  // Cards, Grid item thumbnails
+  'depth-4': '0 1.6px 3.6px 0 rgba(0,0,0,.09), 0 0.3px 0.9px 0 rgba(10,10,10,.11)',
+  // Command bars, Command dropdowns, Context menus
+  'depth-8': '0 3.2px 7.2px 0 rgba(0,0,0,.09), 0 0.6px 1.8px 0 rgba(10,10,10,.11)',
+  // Teaching callouts, Search results dropdown, Hover cards, Tooltips
+  'depth-16': '0 6.4px 14.4px 0 rgba(0,0,0,.09), 0 1.2px 3.6px 0 rgba(10,10,10,.11)',
+  // Login form
+  'depth-32': '0 12.8px 28.8px 0 rgba(0,0,0,.09), 0 2.4px 7.2px 0 rgba(10,10,10,.11)',
+  // Panels, Pop up dialogs
+  'depth-64': '0 25.6px 57.6px 0 rgba(0,0,0,.22), 0 4.8px 14.4px 0 rgba(0,0,0,.18)'
+);
+
+// Motion timing
+$x-motion-timings: (
+  'linear':     cubic-bezier(0, 0, 1, 1),
+  'standard':   cubic-bezier(0.8, 0, 0.2, 1),
+  'accelerate': cubic-bezier(0.9, 0.1, 1, 0.2),
+  'decelerate': cubic-bezier(0.1, 0.9, 0.2, 1)
+);
+
+// Backgrounds palette
+$x-background-color:         #ffffff;
+$x-background-color--darker: #f8fafb;
+
+// Separator/Borders/Divider
+$x-divider-text-color: #c3c3c3;
+
+$x-brands-color: (
+  'vk': #2787F5,
+  'github': #6e5494,
+  'yandex': #c31111,
+  'microsoft': #7FBA00
+);

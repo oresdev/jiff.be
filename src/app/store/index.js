@@ -1,11 +1,19 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
+import settings_module from '@/app/store/modules/settings'
+import cache_plugin from '@/app/store/plugins/cache'
+
 Vue.use(Vuex)
 
 let store = new Vuex.Store({
   state: {
     stories: [],
+
+    cloud: {},
+
+    lastExport: false,
+    lastImport: false,
     version: '1.1'
   },
   mutations: {
@@ -36,6 +44,12 @@ let store = new Vuex.Store({
           return oldUUID.indexOf(story.uuid) < 0
         })
       )
+    },
+    lastExport: (state, date) => {
+      state.lastExport = date
+    },
+    lastImport: (state, date) => {
+      state.lastImport = date
     }
   },
   actions: {
@@ -50,6 +64,13 @@ let store = new Vuex.Store({
     },
     importStories({ commit }, stories) {
       commit('importStories', stories)
+    },
+
+    lastExport({ commit }, date) {
+      commit('lastExport', date)
+    },
+    lastImport({ commit }, date) {
+      commit('lastImport', date)
     }
   },
   getters: {
@@ -66,18 +87,43 @@ let store = new Vuex.Store({
         }
 
         if (currentParams.hashtag) {
-          stories = stories.filter(s => s.content.search(`#${currentParams.hashtag}`) != -1)
+          stories = stories.filter(s => s.hashtags.includes(`#${currentParams.hashtag}`))
         }
 
         return stories
       }
-    }
-  }
-})
+    },
 
-// write to localstorage by subscribe hook
-store.subscribe((mutation, state) => {
-	localStorage.setItem('store', JSON.stringify(state))
+    // https://stackoverflow.com/questions/37821172/unique-counts-in-javascript-array-sorted-by-counts
+    getUsedHashtags(state) {
+      let hashtags = []
+
+      state.stories.forEach(s => {
+        hashtags.push(...s.hashtags)
+      })
+
+      return hashtags.reduce((counts, name) => {
+        counts[name] = (counts[name] || 0) + 1
+        return counts;
+      }, {})
+    },
+
+    lastExport(state) {
+      return state.lastExport
+    },
+    lastImport(state) {
+      return state.lastImport
+    }
+
+  },
+
+  modules: [
+    settings_module
+  ],
+
+  plugins: [
+    cache_plugin()
+  ]
 })
 
 export default store

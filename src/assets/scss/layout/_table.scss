@@ -1,0 +1,24 @@
+.table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  max-width: 100%;
+
+  thead {
+    tr {
+      td {
+        font-weight: var(--x-font-weight--medium);
+      }
+    }
+  }
+
+  thead, tbody {
+    tr {
+      td {
+        vertical-align: middle;
+        padding: .75rem;
+        line-height: 1.42857;
+      }
+    }
+  }
+}

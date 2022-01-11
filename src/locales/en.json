@@ -1,22 +1,35 @@
 {
+  "header": {
+    "stories": "Stories",
+    "settings": "Settings",
+    "manage": "Manage",
+    "about": "About"
+  },
   "home": {
-    "title": "stories",
+    "title": "Stories",
     "hashtag": "by #{hashtag}"
   },
   "about": {
-    "title": "about",
+    "title": "About",
     "about": "This is a simple and private notebook. In the browser.\r\nThis site does not transmit data to the Internet, does not track users.\r\nIf you have questions, feel free to write to info@jiff.be.",
     "version": "Application ver. {version}"
   },
   "manage": {
-    "title": "manage",
+    "title": "Manage",
     "content": [
       "Here you can manage your entries. It's like that.\r\nWe do not force you to save notes here for any reason.\r\n",
       "You can {0} them or {1} everything to one.{2}And if you suddenly want to restore exported entries, {3} them."
     ],
     "export": "export",
     "import": "import",
-    "clean": "clean"
+    "clean": "clean",
+    "last_export": "The last time you exported stories was {date}",
+    "sync": "By the way, if you want to save your notes in the cloud - you have such an opportunity!{0}To do this, you need to provide a {1} (not your personal password) and {2}.",
+    "passphrase": "passphrase",
+    "sync_notes": "sync notes"
+  },
+  "settings": {
+    "title": "Settings"
   },
   "editor": {
     "placeholder":"Start type your story here...",
